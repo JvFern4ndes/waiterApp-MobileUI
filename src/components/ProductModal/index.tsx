@@ -1,5 +1,7 @@
 import { FlatList, Modal } from 'react-native';
 import { Product } from '../../types/Product';
+import { formatCurrency } from '../../utils/formatCurrency';
+import { Button } from '../Button';
 import { Close } from '../Icons/Close';
 
 import { Text } from '../Text';
@@ -10,6 +12,9 @@ import {
   Header,
   IngredientsContainer,
   Ingredient,
+  Footer,
+  FooterContainer,
+  PriceContainer,
 } from './styles';
 
 interface ProductModalProps {
@@ -67,6 +72,19 @@ export function ProductModal({ visible, onClose, product }: ProductModalProps) {
           />
         </IngredientsContainer>
       </ModalBody>
+
+      <Footer>
+        <FooterContainer>
+          <PriceContainer>
+            <Text color="#666">Preço</Text>
+            <Text size={20} weight="600">{formatCurrency(product.price)}</Text>
+          </PriceContainer>
+
+          <Button onPress={() => alert('Adicionar ao pedido')}>
+            Adicionar ao pedido
+          </Button>
+        </FooterContainer>
+      </Footer>
     </Modal>
   );
 }

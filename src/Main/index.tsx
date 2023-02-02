@@ -14,6 +14,7 @@ import { TableModal } from '../components/TableModal';
 import { useState } from 'react';
 import { Cart } from '../components/Cart';
 import { CartItem } from '../types/CartItem';
+import { Product } from '../types/Product';
 
 export function Main() {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
@@ -30,6 +31,10 @@ export function Main() {
   }
 
   function handleAddToCart(product: Product) {
+    if (!selectedTable) {
+      setIsTableModalVisible(true);
+    }
+
     alert(product.name);
   }
 
